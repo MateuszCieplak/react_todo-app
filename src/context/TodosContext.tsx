@@ -38,6 +38,7 @@ export const TodosProvider = ({ children }: { children: ReactNode }) => {
     FILTERS.all as FilterType,
   );
   const inputRef = useRef<HTMLInputElement>(null);
+  const idCounter = useRef(0);
 
   useEffect(() => {
     inputRef.current?.focus();
@@ -61,7 +62,11 @@ export const TodosProvider = ({ children }: { children: ReactNode }) => {
     return true;
   });
 
-  const generateId = (): number => +new Date();
+  const generateId = (): number => {
+    idCounter.current += 1;
+
+    return idCounter.current;
+  };
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);

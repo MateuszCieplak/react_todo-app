@@ -6,9 +6,7 @@ import React, {
   useEffect,
   useRef,
 } from 'react';
-import { Todo } from '../types/todo';
-
-type FilterType = 'all' | 'active' | 'completed';
+import { Todo, FILTERS, FilterType } from '../types/todo';
 
 interface TodosContextType {
   inputRef: React.RefObject<HTMLInputElement>;
@@ -36,7 +34,9 @@ export const TodosProvider = ({ children }: { children: ReactNode }) => {
 
     return savedTodos ? JSON.parse(savedTodos) : [];
   });
-  const [filterType, setFilterType] = useState<FilterType>('all');
+  const [filterType, setFilterType] = useState<FilterType>(
+    FILTERS.all as FilterType,
+  );
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -50,11 +50,11 @@ export const TodosProvider = ({ children }: { children: ReactNode }) => {
   const notCompletedTodos = todos.filter(todo => !todo.completed);
 
   const visibleTodos = todos.filter(todo => {
-    if (filterType === 'active') {
+    if (filterType === FILTERS.active) {
       return !todo.completed;
     }
 
-    if (filterType === 'completed') {
+    if (filterType === FILTERS.completed) {
       return todo.completed;
     }
 

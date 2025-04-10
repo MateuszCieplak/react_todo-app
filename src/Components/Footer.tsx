@@ -1,4 +1,5 @@
 import { useTodos } from '../context/TodosContext';
+import { FILTERS } from '../types/todo';
 
 export const Footer: React.FC = () => {
   const {
@@ -24,7 +25,7 @@ export const Footer: React.FC = () => {
       <nav className="filter" data-cy="Filter">
         <a
           href="#/"
-          className={`filter__link ${filterType === 'all' ? 'selected' : ''} `}
+          className={`filter__link ${filterType === FILTERS.all ? 'selected' : ''} `}
           data-cy="FilterLinkAll"
           onClick={() => handleSelectedTodos('all')}
         >
@@ -33,7 +34,7 @@ export const Footer: React.FC = () => {
 
         <a
           href="#/active"
-          className={`filter__link ${filterType === 'active' ? 'selected' : ''} `}
+          className={`filter__link ${filterType === FILTERS.active ? 'selected' : ''} `}
           data-cy="FilterLinkActive"
           onClick={() => handleSelectedTodos('active')}
         >
@@ -42,7 +43,7 @@ export const Footer: React.FC = () => {
 
         <a
           href="#/completed"
-          className={`filter__link ${filterType === 'completed' ? 'selected' : ''} `}
+          className={`filter__link ${filterType === FILTERS.completed ? 'selected' : ''} `}
           data-cy="FilterLinkCompleted"
           onClick={() => handleSelectedTodos('completed')}
         >
